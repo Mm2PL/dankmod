@@ -1,29 +1,26 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
-  "version": "${version}",
-
-  "name": "Example Mod",
+  "id": "dankmod",
+  "version": "1.0.0",
+  "name": "Dank Mod",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
-    "Me!"
+    "Mm2PL"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
-
+  "icon": "assets/dankmod/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "pl.kotmisia.dankmod.DankMod"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "dankmod.mixins.json"
   ],
 
   "depends": {
@@ -33,6 +30,5 @@
     "java": ">=17"
   },
   "suggests": {
-    "another-mod": "*"
   }
 }
