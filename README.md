@@ -1,9 +1,11 @@
-# Fabric Example Mod
+# DankMod
 
 ## Setup
 
-For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.
+Compile it yourself or something. I wanted to learn how to create Minecraft mods.
 
 ## License
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+This mod is licensed under MIT license.
+
+The template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
