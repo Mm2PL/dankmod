@@ -1,11 +1,13 @@
 package pl.kotmisia.dankmod;
 
-import com.mojang.brigadier.Command;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.server.command.CommandManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.kotmisia.dankmod.config.DankCfg;
 
 public class DankMod implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -26,6 +28,11 @@ public class DankMod implements ModInitializer {
 				return 0;
 			}));
 		});
+		AutoConfig.register(DankCfg.class, GsonConfigSerializer::new);
+	}
+
+	public static DankCfg getConfig() {
+		return AutoConfig.getConfigHolder(DankCfg.class).getConfig();
 	}
 
 }

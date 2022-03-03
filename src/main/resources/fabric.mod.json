@@ -13,10 +13,13 @@
   },
   "license": "CC0-1.0",
   "icon": "assets/dankmod/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "pl.kotmisia.dankmod.DankMod"
+    ],
+    "modmenu": [
+      "pl.kotmisia.dankmod.config.ConfigScreen"
     ]
   },
   "mixins": [

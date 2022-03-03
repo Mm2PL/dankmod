@@ -6,18 +6,20 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.StringVisitable;
 import net.minecraft.text.Style;
+import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import pl.kotmisia.dankmod.DankMod;
+
+import java.net.URI;
 
 @Mixin(Screen.class)
 public class LinkWarningMixin {
-//    @Inject(at = @At("HEAD"), method = "handleTextClick")
-//    private void handleTextClick(@Nullable Style style, CallbackInfoReturnable<Boolean> cir) {
-//        DankMod.LOGGER.warn("HIT THIS!");
-//    }
-
     @Inject(at = @At("HEAD"), method = "renderTextHoverEffect")
     private void renderTextHoverEffect(MatrixStack matrices, Style style, int x, int y, CallbackInfo ci) {
         if (style == null) {
@@ -29,15 +31,37 @@ public class LinkWarningMixin {
         }
         Screen that = (Screen) (Object) this;
 
+        var cfg = DankMod.getConfig();
         String value = event.getValue();
         ClickEvent.Action action = event.getAction();
-        if (action == ClickEvent.Action.RUN_COMMAND) {
-            String text = "WARNING: Clicking this link will run the following command:\n"
-                    + value;
+        String warnKey = null;
+        if (action == ClickEvent.Action.RUN_COMMAND && cfg.warnCommand) {
+            warnKey = "dankmod.warn.command";
+        } else if (action == ClickEvent.Action.COPY_TO_CLIPBOARD && cfg.warnClipboard) {
+            warnKey = "dankmod.warn.clipboard";
+        } else if (action == ClickEvent.Action.OPEN_URL && cfg.warnUrl) {
+            warnKey = "dankmod.warn.url";
+        }
+
+        if (warnKey != null) {
+            var text = new TranslatableText(warnKey, value).formatted(Formatting.DARK_RED);
+            int width = Math.max(that.width/2, 200);
+            var hasHover = style.getHoverEvent() != null;
+            if (hasHover) {
+                if (x < 200) {
+                    width = x;
+                    x = 0;
+                } else {
+                    width = Math.max(that.width / 2, 200);
+                    x -= 200;
+                }
+            }
+
             that.renderOrderedTooltip(
                     matrices,
                     MinecraftClient.getInstance().textRenderer.wrapLines(
-                            StringVisitable.plain(text), Math.max(that.width / 2, 200)
+                            text,
+                            width
                     ),
                     x,
                     y
