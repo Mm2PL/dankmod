@@ -6,5 +6,6 @@
   "text.autoconfig.dankmod.option.warnUrl": "Show hover tooltips on URL links",
   "text.autoconfig.dankmod.option.warnCommand": "Show hover tooltips on command links",
   "text.autoconfig.dankmod.option.warnClipboard": "Show hover tooltips on copy to clipboard links",
-  "text.autoconfig.dankmod.title": "DankMod settings"
+  "text.autoconfig.dankmod.title": "DankMod settings",
+  "gui.dankmod.copyItem": "[Copy] %s"
 }

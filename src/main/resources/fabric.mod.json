@@ -18,6 +18,9 @@
     "main": [
       "pl.kotmisia.dankmod.DankMod"
     ],
+    "client": [
+      "pl.kotmisia.dankmod.DankMod"
+    ],
     "modmenu": [
       "pl.kotmisia.dankmod.config.ConfigScreen"
     ]
