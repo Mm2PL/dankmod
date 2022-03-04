@@ -9,6 +9,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.ClickEvent;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Style;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -41,11 +42,7 @@ public class DankModClient implements ClientModInitializer {
         if (client.player == null) return;
 
         var text = DankModClient.itemToGive(stack);
-        String userText = text;
-        if (text.length() > 100) {
-            userText = text.substring(0, 97) + "...";
-        }
-        var chatTxt = new TranslatableText("gui.dankmod.copyItem", userText)
+        var chatTxt = new TranslatableText("gui.dankmod.copyItem", stack.getName(), stack.getCount())
                 .setStyle(
                         Style.EMPTY
                                 .withClickEvent(
