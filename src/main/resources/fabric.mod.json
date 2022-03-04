@@ -19,7 +19,7 @@
       "pl.kotmisia.dankmod.DankMod"
     ],
     "client": [
-      "pl.kotmisia.dankmod.DankMod"
+      "pl.kotmisia.dankmod.DankModClient"
     ],
     "modmenu": [
       "pl.kotmisia.dankmod.config.ConfigScreen"
