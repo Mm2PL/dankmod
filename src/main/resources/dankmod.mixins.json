@@ -6,7 +6,9 @@
   "mixins": [
   ],
   "client": [
-    "LinkWarningMixin"
+    "InventoryMixin",
+    "LinkWarningMixin",
+    "HandledScreenAccessor"
   ],
   "injectors": {
     "defaultRequire": 1
